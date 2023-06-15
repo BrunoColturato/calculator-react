@@ -1,0 +1,43 @@
+:root {
+  --clr-bg-button: #f0f0f0;
+  --clr-bg-hover-button: #aaa;
+  --clr-bg-operator-button: #fa8231;
+  --clr-bg-operator-hover-button: #fa8231cc;
+  --border-button: solid 1px #888;
+  --border-hover-button: dashed 2px #0f2027;
+}
+
+.button {
+  font-size: 1.4rem;
+  background-color: var(--clr-bg-button);
+  border: none;
+  border-right: var(--border-button);
+  border-bottom: var(--border-button);
+  outline: none;
+}
+
+.button:hover,
+.button:focus-visible {
+  border: var(--border-hover-button);
+}
+
+.button:active {
+  background-color: #ccc;
+}
+
+.button.double {
+  grid-column: span 2;
+}
+
+.button.triple {
+  grid-column: span 3;
+}
+
+.button.operator {
+  background-color: var(--clr-bg-operator-button);
+  color: #fff;
+}
+
+.button.operator:active {
+  background-color: var(--clr-bg-operator-hover-button);
+}
