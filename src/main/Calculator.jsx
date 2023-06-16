@@ -28,6 +28,47 @@ export default function Calculator() {
   }
 
   function handleOperator(newOperator) {
+    if (indexCurrValue === 0) {
+      // Prepare for future operation
+      setOperator(newOperator);
+      setIndexCurrValue(1);
+      setMustClearDisplay(true);
+    } else {
+      // Calculate result
+      let result = values[0];
+
+      switch (operator) {
+        case "+":
+          result += values[1];
+          break;
+        case "-":
+          result -= values[1];
+          break;
+        case "*":
+          result *= values[1];
+          break;
+        case "/":
+          if (values[1] === 0) {
+            clearMemory();
+            setDisplayValue("Math Error");
+            return;
+          }
+          result /= values[1];
+          break;
+      }
+
+      // Update result
+      setValues([result, 0]);
+
+      // Check how to display the value if the result is an integer or float
+      if (result % 1 === 0) setDisplayValue(result.toString());
+      else setDisplayValue(result.toFixed(4));
+
+      const isOperatorEqual = newOperator === "=";
+      setOperator(isOperatorEqual ? null : newOperator);
+      setIndexCurrValue(isOperatorEqual ? 0 : 1);
+      setMustClearDisplay(true);
+    }
   }
 
   function handleDigit(digit) {
@@ -37,7 +78,7 @@ export default function Calculator() {
     }
 
     // Update display value
-    const evalMustClearDisplay = displayValue === "0" || mustClearDisplay;
+    const evalMustClearDisplay = displayValue === "0" || displayValue === "Math Error" || mustClearDisplay;
     const currenValue = evalMustClearDisplay ? "" : displayValue;
     const newDisplayValue = currenValue + digit;
     setDisplayValue(newDisplayValue);
