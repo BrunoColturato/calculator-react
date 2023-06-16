@@ -1,6 +1,8 @@
 @font-face {
   font-family: "RobotoMono";
-  src: url("./assets/fonts/RobotoMono-Thin.ttf");
+  font-weight: 100 900;
+  src: url("./assets/fonts/RobotoMono-VariableFont_wght.ttf");
+
 }
 
 *,

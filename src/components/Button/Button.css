@@ -16,7 +16,6 @@
   outline: none;
 }
 
-.button:hover,
 .button:focus-visible {
   border: var(--border-hover-button);
 }
